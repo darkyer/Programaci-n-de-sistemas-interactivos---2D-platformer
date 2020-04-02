@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
     public float jumpForce = 1;
     public bool isGrounded;
 
+    float fallMultiplier = 2.5f;
+    float lowJumpMultiplier = 2f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +30,8 @@ public class Movement : MonoBehaviour
             Jump();
         }
 
+        BetterJump();
+
         dir = new Vector2(movX, movY);
 
         Move(dir);
@@ -36,6 +41,19 @@ public class Movement : MonoBehaviour
     private void Jump()
     {
         rb.velocity = Vector2.up * jumpForce;
+    }
+
+    private void BetterJump()
+    {
+        if (rb.velocity.y < 0)
+        {
+            Debug.Log("1");
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }else if(rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            Debug.Log("2");
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     private void Move(Vector2 dir)
