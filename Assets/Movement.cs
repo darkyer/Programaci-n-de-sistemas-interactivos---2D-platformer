@@ -12,8 +12,8 @@ public class Movement : MonoBehaviour
     public float jumpForce = 1;
     public bool isGrounded;
 
-    float fallMultiplier = 2.5f;
-    float lowJumpMultiplier = 2f;
+    public float fallMultiplier = 1.5f;
+    public float lowJumpMultiplier = 1f;
 
     private void Awake()
     {
@@ -47,12 +47,10 @@ public class Movement : MonoBehaviour
     {
         if (rb.velocity.y < 0)
         {
-            Debug.Log("1");
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.deltaTime;
         }else if(rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            Debug.Log("2");
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * lowJumpMultiplier * Time.deltaTime;
         }
     }
 
