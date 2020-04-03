@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
+    Animator animator;
     float movX = 0;
     float movY = 0;
     Vector2 dir;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,9 +27,21 @@ public class Movement : MonoBehaviour
         movX = Input.GetAxis("Horizontal");
         movY = Input.GetAxis("Vertical");
 
+        if(movX < 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+
+        animator.SetFloat("Speed", Mathf.Abs(movX));
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
+            animator.SetBool("isJumping", true);
         }
 
         BetterJump();
@@ -64,6 +78,7 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("Ground"))
         {
             isGrounded = true;
+            animator.SetBool("isJumping", false);
         }
     }
 
