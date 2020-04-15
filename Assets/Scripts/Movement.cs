@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
             //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
             transform.rotation = Quaternion.Euler(0, 180f, 0);
         }
-        else
+        if (movX > 0)
         {
             //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             transform.rotation = Quaternion.Euler(0, 0, 0);
