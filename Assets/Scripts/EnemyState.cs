@@ -43,7 +43,7 @@ public class EnemyState : MonoBehaviour
 
     private void Idle()
     {
-        Debug.Log("Enemy Idle");
+        //Debug.Log("Enemy Idle");
         rb.velocity = Vector2.zero;
 
         CheckPlayerRange();
@@ -53,7 +53,7 @@ public class EnemyState : MonoBehaviour
 
     private void Follow()
     {
-        Debug.Log("Enemy Follow");
+        //Debug.Log("Enemy Follow");
         CheckPlayerRange();
 
         CheckOrientation();
@@ -63,7 +63,7 @@ public class EnemyState : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Enemy Attack");
+        //Debug.Log("Enemy Attack");
         rb.velocity = Vector2.zero;
 
         CheckPlayerRange();

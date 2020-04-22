@@ -11,10 +11,13 @@ public class Movement : MonoBehaviour
     Vector2 dir;
     public float speed = 1;
     public float jumpForce = 1;
+    public float groundDistance = 1;
     public bool isGrounded;
 
     public float fallMultiplier = 1.5f;
     public float lowJumpMultiplier = 1f;
+    LayerMask layerMask = 0;
+    RaycastHit2D hit;
 
     private void Awake()
     {
@@ -26,18 +29,27 @@ public class Movement : MonoBehaviour
     {
         movX = Input.GetAxis("Horizontal");
         movY = Input.GetAxis("Vertical");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance);
 
-
-
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+            Debug.DrawRay(transform.position, -Vector3.up * groundDistance, Color.yellow);
+            animator.SetBool("isJumping", false);
+        }
+        else
+        {
+            isGrounded = false;
+            Debug.DrawRay(transform.position, -Vector3.up * groundDistance, Color.red);
+            animator.SetBool("isJumping", true);
+        }
 
         if (movX < 0)
         {
-            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
             transform.rotation = Quaternion.Euler(0, 180f, 0);
         }
         if (movX > 0)
         {
-            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -55,7 +67,6 @@ public class Movement : MonoBehaviour
 
         Move(dir);
     }
-
 
     private void Jump()
     {
@@ -78,21 +89,4 @@ public class Movement : MonoBehaviour
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            animator.SetBool("isJumping", false);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-        
-    }
 }
