@@ -26,7 +26,10 @@ public class EnemyState : MonoBehaviour
 
     private void Update()
     {
-        playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        if (player != null)
+        {
+            playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        }
         switch (currentState)
         {
             case EnemyStates.Idle:
