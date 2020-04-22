@@ -65,7 +65,7 @@ public class EnemySin : MonoBehaviour
         Health colHealth = collision.GetComponent<Health>();
         if(colHealth && collision.CompareTag("Player"))
         {
-            Debug.Log("Player taking damage");
+            //Debug.Log("Player taking damage");
             colHealth.TakeDamage(damage);
             canDamage = false;
         }
@@ -75,7 +75,7 @@ public class EnemySin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player exited damage");
+            //Debug.Log("Player exited damage");
             canDamage = true;
         }
     }

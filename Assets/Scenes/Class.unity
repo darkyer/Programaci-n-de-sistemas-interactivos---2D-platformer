@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
+  type: 1
+  gameManager: {fileID: 618092177}
 --- !u!1 &618092176
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486af4181b910d64baeaec9dc8b168b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesLeft: 2
 --- !u!4 &618092178
 Transform:
   m_ObjectHideFlags: 0
@@ -547,6 +550,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8610294750236679435, guid: d1c1a40959e28224589c7191f0cf48be,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 618092177}
     - target: {fileID: 8610294750236679447, guid: d1c1a40959e28224589c7191f0cf48be,
         type: 3}
       propertyPath: m_Name
@@ -1303,6 +1311,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8610294750236679435, guid: 14a1582feedfed547922e49f5cc82a2a,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 618092177}
     - target: {fileID: 8610294750236679447, guid: 14a1582feedfed547922e49f5cc82a2a,
         type: 3}
       propertyPath: m_Name

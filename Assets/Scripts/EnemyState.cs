@@ -115,6 +115,10 @@ public class EnemyState : MonoBehaviour
 
     public void CheckOrientation()
     {
+        if (!player)
+        {
+            return;
+        }
         if (player.transform.position.x < transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 180f, 0);
