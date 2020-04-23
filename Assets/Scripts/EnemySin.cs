@@ -20,7 +20,6 @@ public class EnemySin : MonoBehaviour
     public float magnitude = 3;
     public Vector3 pos;
 
-    private bool canDamage = true;
     private void Update()
     {
         if(transform.position.x < horizontalLimits.x)
@@ -67,17 +66,6 @@ public class EnemySin : MonoBehaviour
         {
             //Debug.Log("Player taking damage");
             colHealth.TakeDamage(damage);
-            canDamage = false;
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            //Debug.Log("Player exited damage");
-            canDamage = true;
-        }
-    }
-
 }
